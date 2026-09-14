@@ -1,6 +1,6 @@
 # Chrome Web Store: packaging and submitting
 
-First submission 2026-09-11 (version 0.1.0). Listing copy of record: the vault's `runs/naming/api-for-any-site.md` neighbour, `/tmp/apiforanysite-store-listing.md` at the time; the fields below are what the store actually holds.
+First submission 2026-09-11 (version 0.1.0), rejected 2026-09-14 ("Purple Potassium": `tabs` permission not needed, since a granted host permission already exposes the kit tab's URL). Resubmitted as 0.1.1 without it. Listing copy of record: the vault's `runs/naming/api-for-any-site.md` neighbour, `/tmp/apiforanysite-store-listing.md` at the time; the fields below are what the store actually holds.
 
 ## Account
 
@@ -30,7 +30,7 @@ The manifest `description` is the store summary (132 chars max). Bump `version` 
 ## Privacy tab
 
 - Single purpose: let an AI agent on the user's own computer call per-site tools (website kits) inside the user's own logged-in browser.
-- Permission justifications: `userScripts` only for kits the user writes (loaded from their own machine, developer mode; runtime-fenced to the kit's site); `nativeMessaging` for the local host on 127.0.0.1; `tabs` for the kit's background tab; `storage` for kits, settings and the local audit log; `alarms` for keepalive and the rolling daily counters; `scripting` for bundled catalog kits; optional host permissions requested per kit at install.
+- Permission justifications: `userScripts` only for kits the user writes (loaded from their own machine, developer mode; runtime-fenced to the kit's site); `nativeMessaging` for the local host on 127.0.0.1; `storage` for kits, settings and the local audit log; `alarms` for keepalive and the rolling daily counters; `scripting` for bundled catalog kits; optional host permissions requested per kit at install.
 - Remote code: **No** (catalog kits are in the package; personal kits are user-provided code through the User Scripts API).
 - Data disclosures ticked: personally identifiable information, personal communications, website content. The store's FAQ counts local-only handling as collection. All three certifications ticked. Privacy policy https://apiforanysite.com/privacy/.
 
