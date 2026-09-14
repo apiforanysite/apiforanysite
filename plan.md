@@ -22,7 +22,7 @@ scripts/       gen-skill.js (tool list in SKILL.md from the manifest)
 
 ## Extension
 
-- `manifest.json`: permissions `userScripts`, `nativeMessaging`, `tabs`, `storage`, `alarms`; `optional_host_permissions: ["https://*/*", "http://*/*"]`. Origins are granted per kit at install time (`chrome.permissions.request` from the popup, a user gesture).
+- `manifest.json`: permissions `userScripts`, `nativeMessaging`, `storage`, `alarms`, `scripting` (no `tabs`: a granted host permission already exposes the kit tab's URL, and the store rejects it as unneeded); `optional_host_permissions: ["https://*/*", "http://*/*"]`. Origins are granted per kit at install time (`chrome.permissions.request` from the popup, a user gesture).
 - `background.js`: native port with reconnect on disconnect (an open port keeps the worker alive, Chrome 105+); message router; tab finder (`chrome.tabs.query` on the kit's origins, else `chrome.tabs.create({active:false})` and wait for `status === "complete"`); executor; audit log in `chrome.storage.local` (capped at 500 records).
 - `kits.js`: install from a source URL pinned to a commit (`https://raw.githubusercontent.com/<owner>/<repo>/<sha>/kits/<name>/`), or from the host's dev server (`http://127.0.0.1:4890/kits/<name>/`) when developer mode is on. Stores manifest + tool sources + the pin. No auto-update.
 - `popup.html/js`: installed kits with their origins and tools, install by URL, developer-mode toggle, per-kit "allow destructive tools" switch (interim gate until the approval surface is designed), the audit log, the userScripts-toggle walk-through when the API is unavailable.
